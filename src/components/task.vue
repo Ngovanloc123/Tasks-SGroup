@@ -1,27 +1,26 @@
 <script setup>
-// defineProps({
-//   msg: {
-//     type: String,
-//     required: false,
-//   },
-// })
+defineProps({
+  msg: {
+    subject: String,
+    title: String,
+    description: String,
+    date: String,
+  },
+})
 </script>
 
 <template>
   <div class="container">
     <div class="content">
       <div class="header">
-        <a href="" class="subject">Marketing</a>
+        <a href="" class="subject">{{ subject }}</a>
       </div>
-      <h2 class="title">Write SEO article for new product</h2>
+      <h2 class="title">{{ title }}</h2>
       <div class="break"></div>
-      <p class="description">
-        This is an existential moment for effective altruism and the rationalist
-        community writ-large
-      </p>
+      <p class="description">{{ description }}</p>
       <div class="time">
         <i class="ti-alarm-clock"></i>
-        <div class="create-time">June 30,2022</div>
+        <div class="date">{{ date }}</div>
       </div>
     </div>
     <div class="btn-header">
@@ -72,6 +71,7 @@ template {
   color: #000;
   font-size: 24px;
   cursor: pointer;
+  transition: .3s ease;
 }
 .btn-header button:hover {
     color: #fff;
