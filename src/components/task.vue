@@ -1,12 +1,10 @@
 <script setup>
 defineProps({
-  msg: {
-    subject: String,
-    title: String,
-    description: String,
-    date: String,
-  },
-})
+  subject: String,
+  title: String,
+  description: String,
+  date: String,
+});
 </script>
 
 <template>
@@ -31,10 +29,6 @@ defineProps({
 </template>
 
 <style scoped>
-
-template {
-    
-}
 .container {
   display: flex;
   justify-content: space-between;
@@ -71,12 +65,12 @@ template {
   color: #000;
   font-size: 24px;
   cursor: pointer;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 .btn-header button:hover {
-    color: #fff;
-    background: #928d8d;
-    border-radius: 5px;
+  color: #fff;
+  background: #928d8d;
+  border-radius: 5px;
 }
 
 .title {

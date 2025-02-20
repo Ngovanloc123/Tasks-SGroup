@@ -1,21 +1,31 @@
 <script setup>
-  import task from "./components/task.vue";
-  import { ref } from "vue";
+import Task from "./components/Task.vue";
+import NewTask from "./components/NewTask.vue";
+import { ref } from "vue";
 
-  const tasks_todo = ref([]);
+const tasks_todo = ref([]);
 
-  const addTask_todo = () => {
-    tasks_todo.value.push({
-      subject: "Marketing",
-      title: "Write SEO article for new product",
-      description:
-        "This is an existential moment for effective altruism and the rationalist community writ-large",
-      date: new Date().toLocaleDateString(),
-    });
-  };
+const isShowPopup = ref(false);
+
+const handleShowTaskDetail = (value) => {
+  isShowPopup.value = value;
+};
+
+// const addTask_todo = () => {
+//   tasks_todo.value.push({
+//     subject: "Marketing",
+//     title: "Write SEO article for new product",
+//     description:
+//       "This is an existential moment for effective altruism and the rationalist community writ-large",
+//     date: new Date().toLocaleDateString(),
+//   });
+// };
 </script>
 
 <template>
+  <!-- ============== NEW TASK & OVERLAY ================= -->
+  <NewTask v-if="isShowPopup" :handleShowTaskDetail="handleShowTaskDetail"/>
+
   <div class="container">
     <div class="header">
       <div class="logo">
@@ -25,7 +35,8 @@
           <img src="./assets/images/hi.png" alt="" class="text-img" />
         </p>
       </div>
-      <button class="task-btn" @click="addTask_todo">
+      <!-- <button class="task-btn" @click="addTask_todo"> -->
+      <button class="task-btn" @click="handleShowTaskDetail(true)">
         <i class="ti-plus"></i>New task
       </button>
     </div>
@@ -40,7 +51,14 @@
             <p class="count-task">{{ tasks_todo.length }}</p>
           </div>
           <ul class="tasks">
-            <task v-for="task in tasks_todo" :key="task.title" :msg="task" />
+            <Task 
+              v-for="task in tasks_todo" 
+              :key="task.title"
+              :subject="task.subject"
+              :title="task.title"
+              :description="task.description"
+              :date="task.date"
+            />
           </ul>
         </li>
         <!-- ============= LIST DOING ============== -->
@@ -63,7 +81,6 @@
             <task />
           </ul>
         </li>
-
       </ul>
     </div>
   </div>
@@ -203,6 +220,7 @@
 .tasks {
   list-style: none;
   width: 100%;
-  margin-left: -50px;
+  margin-left: -10px;
+  margin-top: 30px;
 }
 </style>
